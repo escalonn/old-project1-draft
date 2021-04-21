@@ -1,0 +1,72 @@
+﻿@model PizzaStore.Interface.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h2>Order Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Order ID
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt>
+            Time Placed (UTC)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+        <dt>
+            Location ID
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Location.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.AccountID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.AccountID)
+        </dd>
+    </dl>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Quantity
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (KeyValuePair<decimal, int> item in ViewBag.OrderParts)
+            {
+                <tr>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.Key)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Total Value
+        </dt>
+        <dd>
+            $@Html.DisplayFor(model => model.Lib.TotalValueUsd)
+        </dd>
+    </dl>
+</div>

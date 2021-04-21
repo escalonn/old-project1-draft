@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PizzaStore.Interface.Models.User>
+
+@{
+    ViewData["Title"] = "User Index";
+}
+
+<h2>User Index</h2>
+
+<p>
+    <a asp-action="Create">Create New Account</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayName)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayName)
+                </td>
+                <td>
+                    @Html.ActionLink("Details and Order History", "Details", new { id = item.AccountID })
+                </td>
+                <td>
+                    @Html.ActionLink("Manage Orders", "Index", "Order", new { id = item.AccountID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
